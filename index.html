@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grúas Tijuana — Remolque y auxilio vial 24 horas</title>
+<meta name="description" content="Servicio de grúas y remolque en Tijuana. Atendemos las 24 horas, llegamos en menos de 20 minutos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --asfalto:#10151A;
+  --acero:#171E25;
+  --acero-2:#1E262E;
+  --ambar:#F2A33C;
+  --ambar-sombra:rgba(242,163,60,.14);
+  --rojo:#D8412F;
+  --niebla:#C7D0D9;
+  --humo:#7E8B96;
+  --linea:rgba(199,208,217,.14);
+  --serif:'Bodoni Moda',Georgia,serif;
+  --sans:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--asfalto);
+  color:var(--niebla);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ambar);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+
+/* ---------- encabezado ---------- */
+.top{
+  position:sticky;top:0;z-index:50;
+  background:rgba(16,21,26,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--linea);
+}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+.marca{font-family:var(--serif);font-size:23px;letter-spacing:.01em;text-decoration:none;white-space:nowrap}
+.marca i{font-style:italic;color:var(--ambar)}
+.nav{display:flex;gap:30px;font-size:14.5px;color:var(--humo)}
+.nav a{text-decoration:none;transition:color .2s}
+.nav a:hover{color:var(--niebla)}
+.top-tel{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--ambar);color:#120D05;
+  padding:11px 20px;border-radius:2px;
+  font-size:14.5px;font-weight:600;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;
+}
+.top-tel:hover{transform:translateY(-1px);box-shadow:0 10px 30px var(--ambar-sombra)}
+.punto{width:7px;height:7px;border-radius:50%;background:#120D05;animation:latir 2.4s infinite}
+@keyframes latir{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ---------- portada ---------- */
+.portada{
+  position:relative;overflow:hidden;
+  min-height:88vh;display:flex;align-items:center;
+  padding:120px 0 90px;
+}
+.portada::before{
+  content:"";position:absolute;top:-180px;right:-160px;width:720px;height:720px;
+  background:radial-gradient(circle,rgba(242,163,60,.10) 0%,transparent 66%);
+  pointer-events:none;z-index:1;
+}
+.portada-in{position:relative;z-index:3;max-width:720px}
+.titular{font-family:var(--serif);font-weight:400;font-size:clamp(44px,5.6vw,80px);line-height:1.04;letter-spacing:-.015em}
+.titular .l2{display:block;font-style:italic;color:var(--ambar);margin-top:.06em}
+.bajada{margin-top:26px;max-width:46ch;font-size:17.5px;color:var(--niebla);line-height:1.8;text-shadow:0 2px 18px rgba(16,21,26,.6)}
+.acciones{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.btn{
+  display:inline-flex;align-items:center;gap:11px;
+  padding:16px 30px;border-radius:2px;font-size:15px;font-weight:600;
+  text-decoration:none;border:1px solid transparent;transition:all .22s;
+}
+.btn-ambar{background:var(--ambar);color:#120D05}
+.btn-ambar:hover{background:#FFBB5C;transform:translateY(-2px);box-shadow:0 14px 38px var(--ambar-sombra)}
+.btn-linea{
+  border-color:rgba(199,208,217,.4);color:var(--niebla);
+  background:rgba(16,21,26,.35);backdrop-filter:blur(6px);
+}
+.btn-linea:hover{border-color:var(--niebla);background:rgba(199,208,217,.1)}
+.datos{display:flex;gap:40px;margin-top:46px;padding-top:26px;border-top:1px solid var(--linea)}
+.dato b{display:block;font-family:var(--serif);font-size:30px;font-weight:400;color:var(--niebla);line-height:1.2}
+.dato span{font-size:13.5px;color:var(--humo)}
+
+/* ---------- escena 3d como telón de fondo ---------- */
+.escena{
+  position:absolute;inset:0;z-index:0;
+  width:100%;height:100%;
+}
+#lienzo{width:100%;height:100%;display:block}
+.escena::after{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(100deg, rgba(16,21,26,.94) 0%, rgba(16,21,26,.82) 32%, rgba(16,21,26,.42) 58%, rgba(16,21,26,.72) 100%),
+    linear-gradient(0deg, var(--asfalto) 0%, transparent 22%);
+}
+.sin-3d{
+  display:none;position:absolute;inset:0;align-items:center;justify-content:center;
+  color:var(--humo);font-size:14px;text-align:center;padding:24px;
+}
+
+/* ---------- barra de cobertura: ticker en movimiento continuo ---------- */
+.cobertura{
+  border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);
+  background:var(--acero);overflow:hidden;position:relative;
+}
+.cobertura::before,.cobertura::after{
+  content:"";position:absolute;top:0;bottom:0;width:64px;z-index:2;pointer-events:none;
+}
+.cobertura::before{left:0;background:linear-gradient(90deg,var(--acero),transparent)}
+.cobertura::after{right:0;background:linear-gradient(270deg,var(--acero),transparent)}
+.cobertura-pista{display:flex;width:max-content;animation:desfile 28s linear infinite}
+.cobertura:hover .cobertura-pista{animation-play-state:paused}
+.cobertura-grupo{display:flex;align-items:center;flex-shrink:0}
+.cob-eti{padding:18px 26px 18px 32px;font-size:13.5px;color:var(--ambar);white-space:nowrap;flex-shrink:0}
+.cob-zona{padding:18px 26px;font-size:14.5px;color:var(--humo);border-left:1px solid var(--linea);white-space:nowrap;flex-shrink:0}
+@keyframes desfile{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- estructura de secciones ---------- */
+section{padding:104px 0}
+.enc{max-width:640px;margin-bottom:56px}
+.enc h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.8vw,48px);line-height:1.12;letter-spacing:-.01em}
+.enc p{margin-top:16px;color:var(--humo);font-size:16.5px;line-height:1.8}
+
+/* ---------- servicios ---------- */
+.serv{border-top:1px solid var(--linea)}
+.serv-fila{
+  display:grid;grid-template-columns:minmax(220px,1fr) 1.5fr auto;
+  gap:32px;align-items:baseline;
+  padding:34px 0;border-bottom:1px solid var(--linea);
+  position:relative;transition:padding-left .3s ease;
+}
+.serv-fila::before{
+  content:"";position:absolute;left:0;top:-1px;height:1px;width:0;
+  background:var(--ambar);transition:width .45s cubic-bezier(.22,1,.36,1);
+}
+.serv-fila:hover::before{width:100%}
+.serv-fila:hover{padding-left:14px}
+.serv-fila h3{font-family:var(--serif);font-weight:400;font-size:27px;line-height:1.25}
+.serv-fila p{color:var(--humo);font-size:15.5px;line-height:1.75;max-width:52ch}
+.serv-precio{font-size:14px;color:var(--ambar);white-space:nowrap}
+
+/* ---------- proceso ---------- */
+.proceso{background:var(--acero)}
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea)}
+.paso{background:var(--acero);padding:36px 28px}
+.paso b{
+  display:block;font-family:var(--serif);font-size:15px;color:var(--ambar);
+  padding-bottom:16px;margin-bottom:18px;border-bottom:1px solid var(--linea);
+}
+.paso h3{font-size:17px;font-weight:600;margin-bottom:10px;letter-spacing:-.005em}
+.paso p{font-size:14.5px;color:var(--humo);line-height:1.75}
+
+/* ---------- testimonio ---------- */
+.cita{max-width:840px;margin:0 auto;text-align:center}
+.cita blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(25px,3.2vw,38px);line-height:1.42;letter-spacing:-.01em}
+.cita figcaption{margin-top:28px;font-size:14.5px;color:var(--humo)}
+
+/* ---------- preguntas ---------- */
+.faq{max-width:840px}
+.faq details{border-bottom:1px solid var(--linea)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:26px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  font-size:17.5px;font-weight:500;transition:color .2s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--ambar)}
+.cruz{position:relative;width:14px;height:14px;flex-shrink:0}
+.cruz::before,.cruz::after{content:"";position:absolute;background:var(--ambar);transition:transform .28s}
+.cruz::before{left:0;top:6px;width:14px;height:2px}
+.cruz::after{left:6px;top:0;width:2px;height:14px}
+.faq details[open] .cruz::after{transform:rotate(90deg);opacity:0}
+.faq details p{padding:0 0 26px;color:var(--humo);font-size:15.5px;line-height:1.85;max-width:62ch}
+
+/* ---------- llamada final ---------- */
+.final{border-top:1px solid var(--linea);text-align:center}
+.final h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,44px);line-height:1.18}
+.final .tel{
+  display:inline-block;margin:32px 0 10px;
+  font-family:var(--serif);font-size:clamp(38px,6.4vw,76px);
+  color:var(--ambar);text-decoration:none;letter-spacing:-.02em;line-height:1.1;
+  transition:opacity .2s;
+}
+.final .tel:hover{opacity:.82}
+.final small{display:block;color:var(--humo);font-size:14.5px}
+.final .acciones{justify-content:center;margin-top:34px}
+
+/* ---------- pie ---------- */
+footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
+.pie-in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--humo)}
+
+/* ---------- entrada de portada ---------- */
+.sube{opacity:0;transform:translateY(22px);animation:sube .9s cubic-bezier(.22,1,.36,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.16s}.d3{animation-delay:.27s}.d4{animation-delay:.38s}
+@keyframes sube{to{opacity:1;transform:none}}
+
+@media (max-width:980px){
+  .portada{min-height:78vh;padding:100px 0 70px}
+  .pasos{grid-template-columns:repeat(2,1fr)}
+  .serv-fila{grid-template-columns:1fr;gap:12px}
+  .nav{display:none}
+}
+@media (max-width:620px){
+  .wrap{padding:0 22px}
+  section{padding:72px 0}
+  .portada{min-height:auto;padding:88px 0 56px}
+  .escena::after{
+    background:
+      linear-gradient(180deg, rgba(16,21,26,.88) 0%, rgba(16,21,26,.7) 40%, rgba(16,21,26,.92) 100%);
+  }
+  .pasos{grid-template-columns:1fr}
+  .datos{flex-wrap:wrap;gap:26px}
+  .acciones .btn{flex:1 1 100%;justify-content:center}
+  .cob-zona{padding:14px 18px;font-size:13.5px}
+  .cob-eti{padding:14px 18px 14px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .sube{opacity:1;transform:none}
+  .cobertura-pista{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a href="#" class="marca">Grúas <i>Tijuana</i></a>
+    <nav class="nav">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo funciona</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a href="tel:+526640000000" class="top-tel"><span class="punto"></span>664 000 0000</a>
+  </div>
+</header>
+
+<main>
+
+<section class="portada">
+  <div class="escena">
+    <canvas id="lienzo" aria-label="Modelo tridimensional de una grúa de plataforma girando de fondo"></canvas>
+    <p class="sin-3d" id="sin3d">Servicio de grúa de plataforma en Tijuana.</p>
+  </div>
+  <div class="wrap portada-in">
+    <h1 class="titular sube d1">Tu carro no se mueve.<span class="l2">Nosotros sí.</span></h1>
+    <p class="bajada sube d2">Remolque y auxilio vial en Tijuana, las 24 horas. Contestamos al primer timbrazo, te decimos el precio antes de salir y llegamos en menos de 20 minutos.</p>
+    <div class="acciones sube d3">
+      <a href="tel:+526640000000" class="btn btn-ambar">Llamar ahora</a>
+      <a href="https://wa.me/526640000000?text=Hola,%20necesito%20una%20gr%C3%BAa" class="btn btn-linea" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+    </div>
+    <div class="datos sube d4">
+      <div class="dato"><b>18 min</b><span>Tiempo promedio de llegada</span></div>
+      <div class="dato"><b>24/7</b><span>Incluye domingos y feriados</span></div>
+      <div class="dato"><b>4,200</b><span>Traslados desde 2019</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="cobertura">
+  <div class="cobertura-pista">
+    <div class="cobertura-grupo">
+      <span class="cob-eti">Cobertura esta noche</span>
+      <span class="cob-zona">Zona Río</span>
+      <span class="cob-zona">Centro</span>
+      <span class="cob-zona">Otay</span>
+      <span class="cob-zona">La Mesa</span>
+      <span class="cob-zona">Playas</span>
+      <span class="cob-zona">El Florido</span>
+      <span class="cob-zona">Rosarito</span>
+      <span class="cob-zona">Carretera a Tecate</span>
+    </div>
+    <div class="cobertura-grupo" aria-hidden="true">
+      <span class="cob-eti">Cobertura esta noche</span>
+      <span class="cob-zona">Zona Río</span>
+      <span class="cob-zona">Centro</span>
+      <span class="cob-zona">Otay</span>
+      <span class="cob-zona">La Mesa</span>
+      <span class="cob-zona">Playas</span>
+      <span class="cob-zona">El Florido</span>
+      <span class="cob-zona">Rosarito</span>
+      <span class="cob-zona">Carretera a Tecate</span>
+    </div>
+  </div>
+</div>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="enc">
+      <h2>Lo que hacemos cuando el carro ya no da</h2>
+      <p>Una sola plataforma, un solo operador, y tu vehículo llega igual que como subió.</p>
+    </div>
+    <div class="serv">
+      <article class="serv-fila">
+        <h3>Remolque de vehículos</h3>
+        <p>Autos, camionetas, motos y eléctricos. Plataforma con malacate, sin enganche al eje ni rayones en la defensa.</p>
+        <span class="serv-precio">Desde $650 en la ciudad</span>
+      </article>
+      <article class="serv-fila">
+        <h3>Auxilio en carretera</h3>
+        <p>Te quedaste en la libre o en la cuota. Vamos por ti con luces de emergencia y conos, de día o de madrugada.</p>
+        <span class="serv-precio">Tarifa por kilómetro</span>
+      </article>
+      <article class="serv-fila">
+        <h3>Traslado a taller</h3>
+        <p>Al taller que tú digas. Si no tienes uno de confianza, te decimos a quién le llevamos nosotros nuestros carros.</p>
+        <span class="serv-precio">Sin cargo extra en zona</span>
+      </article>
+      <article class="serv-fila">
+        <h3>Corriente, llanta y gasolina</h3>
+        <p>A veces no hace falta la grúa. Si se arregla en el lugar, te lo resolvemos ahí mismo y te cobramos menos.</p>
+        <span class="serv-precio">Desde $350</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="proceso" id="proceso">
+  <div class="wrap">
+    <div class="enc">
+      <h2>Cuatro pasos y ya vamos en camino</h2>
+      <p>Nadie quiere llenar un formulario parado en el acotamiento. Por eso todo se resuelve en la llamada.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso">
+        <b>01</b>
+        <h3>Llamas</h3>
+        <p>Contesta una persona, no una grabadora. Nos dices qué traes y dónde estás.</p>
+      </div>
+      <div class="paso">
+        <b>02</b>
+        <h3>Te damos el precio</h3>
+        <p>Cerrado, antes de salir. Si el costo sube por algo, te avisamos antes de subir el carro.</p>
+      </div>
+      <div class="paso">
+        <b>03</b>
+        <h3>Llega la plataforma</h3>
+        <p>Te mandamos la ubicación del operador para que sepas cuánto falta.</p>
+      </div>
+      <div class="paso">
+        <b>04</b>
+        <h3>Entregamos</h3>
+        <p>Bajamos el vehículo donde lo pediste y te pasamos el comprobante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <figure class="cita">
+      <blockquote>“Se me apagó en el segundo piso a las once de la noche con mi hija en el carro. Llegaron en quince minutos y ni discutimos el precio, ya me lo habían dicho por teléfono.”</blockquote>
+      <figcaption>Mariana Escobedo — Zona Río</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="preguntas">
+  <div class="wrap">
+    <div class="enc">
+      <h2>Lo que siempre nos preguntan</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>¿De verdad atienden a las 3 de la mañana?<span class="cruz"></span></summary>
+        <p>Sí. Hay un operador de turno toda la noche y otro de respaldo. La madrugada es cuando más nos hablan, así que el teléfono nunca se queda solo.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto me va a costar?<span class="cruz"></span></summary>
+        <p>Depende de la distancia y del tipo de vehículo, pero te damos el precio cerrado por teléfono antes de salir. No manejamos cargos sorpresa al llegar.</p>
+      </details>
+      <details>
+        <summary>¿Pueden mover un carro que no enciende ni avanza?<span class="cruz"></span></summary>
+        <p>Sí. La plataforma trae malacate, así que el vehículo sube aunque no prenda, no tenga frenos o esté con las llantas trabadas.</p>
+      </details>
+      <details>
+        <summary>¿Trabajan con aseguradoras?<span class="cruz"></span></summary>
+        <p>Podemos entregarte factura y el comprobante del traslado para que lo presentes con tu aseguradora. El cobro lo haces directamente con nosotros.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si mi carro es eléctrico o híbrido?<span class="cruz"></span></summary>
+        <p>Se mueve en plataforma, nunca arrastrado, que es justo lo que piden los fabricantes para no dañar el motor eléctrico. Es el mismo servicio, sin costo adicional.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>No esperes a que oscurezca más.</h2>
+    <a href="tel:+526640000000" class="tel">664 000 0000</a>
+    <small>Disponible ahora en Tijuana y alrededores</small>
+    <div class="acciones">
+      <a href="tel:+526640000000" class="btn btn-ambar">Llamar ahora</a>
+      <a href="https://wa.me/526640000000?text=Hola,%20necesito%20una%20gr%C3%BAa" class="btn btn-linea" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap pie-in">
+    <span>Grúas Tijuana — Remolque y auxilio vial las 24 horas</span>
+    <span>Tijuana, Baja California</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var lienzo = document.getElementById('lienzo');
+  if (!window.THREE || !lienzo) { document.getElementById('sin3d').style.display='flex'; return; }
+
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var render, escena, camara, torno, animar = true;
+
+  try {
+    render = new THREE.WebGLRenderer({canvas:lienzo, antialias:true, alpha:true});
+  } catch(e) {
+    document.getElementById('sin3d').style.display='flex';
+    lienzo.style.display='none';
+    return;
+  }
+  render.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  render.shadowMap.enabled = true;
+  render.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  escena = new THREE.Scene();
+  camara = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+  camara.position.set(6.6, 3.1, 9.4);
+  camara.lookAt(1.1, 0.85, 0);
+
+  // ---- luces: sodio ámbar de un lado, mercurio frío del otro
+  escena.add(new THREE.HemisphereLight(0x4a5a6b, 0x080b0e, 0.55));
+  var clave = new THREE.DirectionalLight(0xdfe9f5, 1.25);
+  clave.position.set(6, 9, 5);
+  clave.castShadow = true;
+  clave.shadow.mapSize.width = 1024;
+  clave.shadow.mapSize.height = 1024;
+  clave.shadow.camera.near = 1;
+  clave.shadow.camera.far = 30;
+  clave.shadow.camera.left = -7; clave.shadow.camera.right = 7;
+  clave.shadow.camera.top = 7; clave.shadow.camera.bottom = -7;
+  escena.add(clave);
+  var ambarLuz = new THREE.PointLight(0xF2A33C, 1.5, 22);
+  ambarLuz.position.set(-5, 2.6, 3.4);
+  escena.add(ambarLuz);
+  var contra = new THREE.DirectionalLight(0x8fb4d8, 0.5);
+  contra.position.set(-5, 3, -6);
+  escena.add(contra);
+
+  // ---- piso: charco de luz
+  var pisoLienzo = document.createElement('canvas');
+  pisoLienzo.width = pisoLienzo.height = 256;
+  var px = pisoLienzo.getContext('2d');
+  var grad = px.createRadialGradient(128,128,10,128,128,128);
+  grad.addColorStop(0,'#2c3a45');
+  grad.addColorStop(1,'#10151A');
+  px.fillStyle = grad; px.fillRect(0,0,256,256);
+  var pisoTex = new THREE.CanvasTexture(pisoLienzo);
+  var piso = new THREE.Mesh(
+    new THREE.CircleGeometry(9, 64),
+    new THREE.MeshStandardMaterial({map:pisoTex, roughness:0.82, metalness:0.15})
+  );
+  piso.rotation.x = -Math.PI/2;
+  piso.position.y = -0.02;
+  piso.receiveShadow = true;
+  escena.add(piso);
+
+  // ---- materiales
+  var mCarroceria = new THREE.MeshStandardMaterial({color:0xE9E7E2, roughness:0.38, metalness:0.32});
+  var mAcero      = new THREE.MeshStandardMaterial({color:0x2b343d, roughness:0.55, metalness:0.72});
+  var mPlataforma = new THREE.MeshStandardMaterial({color:0x39424c, roughness:0.62, metalness:0.65});
+  var mVidrio     = new THREE.MeshStandardMaterial({color:0x0d1318, roughness:0.12, metalness:0.9});
+  var mLlanta     = new THREE.MeshStandardMaterial({color:0x14181c, roughness:0.92, metalness:0.05});
+  var mRin        = new THREE.MeshStandardMaterial({color:0xb9c2cb, roughness:0.32, metalness:0.88});
+  var mAmbar      = new THREE.MeshStandardMaterial({color:0xF2A33C, emissive:0xF2A33C, emissiveIntensity:0.9, roughness:0.4});
+  var mFaro       = new THREE.MeshStandardMaterial({color:0xfff4dd, emissive:0xfff4dd, emissiveIntensity:1.1, roughness:0.3});
+  var mRojo       = new THREE.MeshStandardMaterial({color:0xD8412F, roughness:0.5, metalness:0.2});
+
+  function caja(w,h,d,mat,x,y,z){
+    var m = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), mat);
+    m.position.set(x,y,z);
+    m.castShadow = true; m.receiveShadow = true;
+    return m;
+  }
+
+  torno = new THREE.Group();
+  var camion = new THREE.Group();
+
+  // chasis
+  camion.add(caja(7.4, 0.26, 2.16, mAcero, 0, 0.74, 0));
+  // plataforma inclinada de carga
+  var deck = caja(4.5, 0.16, 2.3, mPlataforma, 1.15, 1.06, 0);
+  deck.rotation.z = -0.055;
+  camion.add(deck);
+  // rieles de la plataforma
+  var rielA = caja(4.5, 0.14, 0.1, mAcero, 1.15, 1.2, 1.1); rielA.rotation.z = -0.055; camion.add(rielA);
+  var rielB = caja(4.5, 0.14, 0.1, mAcero, 1.15, 1.2, -1.1); rielB.rotation.z = -0.055; camion.add(rielB);
+  // rampa trasera
+  var rampa = caja(1.5, 0.12, 2.3, mPlataforma, 3.85, 0.72, 0);
+  rampa.rotation.z = -0.3;
+  camion.add(rampa);
+
+  // cabina
+  camion.add(caja(2.3, 1.42, 2.1, mCarroceria, -2.3, 1.62, 0));
+  camion.add(caja(1.45, 0.92, 2.06, mCarroceria, -1.1, 1.38, 0));
+  // parabrisas y ventanas
+  var parab = caja(0.1, 0.78, 1.86, mVidrio, -1.32, 1.86, 0);
+  parab.rotation.z = 0.24;
+  camion.add(parab);
+  camion.add(caja(1.9, 0.62, 0.08, mVidrio, -2.35, 1.86, 1.03));
+  camion.add(caja(1.9, 0.62, 0.08, mVidrio, -2.35, 1.86, -1.03));
+  // parrilla y defensa
+  camion.add(caja(0.16, 0.5, 1.9, mAcero, -3.48, 1.22, 0));
+  camion.add(caja(0.3, 0.26, 2.1, mAcero, -3.55, 0.82, 0));
+  // faros
+  camion.add(caja(0.12, 0.2, 0.42, mFaro, -3.52, 1.22, 0.72));
+  camion.add(caja(0.12, 0.2, 0.42, mFaro, -3.52, 1.22, -0.72));
+  // calaveras
+  camion.add(caja(0.1, 0.2, 0.34, mRojo, 4.42, 0.9, 0.86));
+  camion.add(caja(0.1, 0.2, 0.34, mRojo, 4.42, 0.9, -0.86));
+  // tanque de combustible
+  var tanque = new THREE.Mesh(new THREE.CylinderGeometry(0.3,0.3,1.2,20), mRin);
+  tanque.rotation.z = Math.PI/2;
+  tanque.position.set(-0.4, 0.62, 1.12);
+  tanque.castShadow = true;
+  camion.add(tanque);
+
+  // torreta de emergencia
+  var barra = caja(0.9, 0.16, 1.5, mAcero, -2.3, 2.42, 0);
+  camion.add(barra);
+  var faroA = caja(0.5, 0.2, 0.44, mAmbar, -2.3, 2.54, 0.48);
+  var faroB = caja(0.5, 0.2, 0.44, mAmbar.clone(), -2.3, 2.54, -0.48);
+  camion.add(faroA); camion.add(faroB);
+  var destello = new THREE.PointLight(0xF2A33C, 0, 9);
+  destello.position.set(-2.3, 2.6, 0);
+  camion.add(destello);
+
+  // pluma y malacate
+  var torre = caja(0.26, 1.15, 0.9, mAcero, -0.85, 1.72, 0);
+  camion.add(torre);
+  var pluma = caja(2.5, 0.2, 0.26, mAcero, 0.2, 2.16, 0);
+  pluma.rotation.z = -0.16;
+  camion.add(pluma);
+  var malacate = new THREE.Mesh(new THREE.CylinderGeometry(0.22,0.22,0.68,18), mRin);
+  malacate.rotation.x = Math.PI/2;
+  malacate.position.set(-0.85, 2.3, 0);
+  malacate.castShadow = true;
+  camion.add(malacate);
+  var cable = new THREE.Mesh(new THREE.CylinderGeometry(0.022,0.022,1.9,8), mRin);
+  cable.rotation.z = Math.PI/2 - 0.16;
+  cable.position.set(0.3, 2.2, 0);
+  camion.add(cable);
+
+  // llantas
+  function llanta(x, z){
+    var g = new THREE.Group();
+    var caucho = new THREE.Mesh(new THREE.CylinderGeometry(0.62,0.62,0.42,26), mLlanta);
+    caucho.rotation.x = Math.PI/2;
+    caucho.castShadow = true;
+    g.add(caucho);
+    var rin = new THREE.Mesh(new THREE.CylinderGeometry(0.31,0.31,0.44,20), mRin);
+    rin.rotation.x = Math.PI/2;
+    g.add(rin);
+    g.position.set(x, 0.62, z);
+    return g;
+  }
+  [[-2.5,1.08],[-2.5,-1.08],[1.5,1.08],[1.5,-1.08],[2.65,1.08],[2.65,-1.08]].forEach(function(p){
+    camion.add(llanta(p[0], p[1]));
+  });
+
+  // franjas de señalamiento en la defensa trasera
+  for (var i=0; i<6; i++){
+    camion.add(caja(0.08, 0.26, 0.3, i%2 ? mRojo : mCarroceria, 4.48, 0.55, -0.9 + i*0.36));
+  }
+  camion.add(caja(0.22, 0.2, 2.2, mAcero, 4.42, 0.4, 0));
+
+  camion.position.y = 0;
+  torno.add(camion);
+  escena.add(torno);
+
+  // ---- animación automática, sin interacción del usuario
+  var velocidad = 0.0026;
+
+  function medir(){
+    var r = lienzo.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    render.setSize(r.width, r.height, false);
+    camara.aspect = r.width / r.height;
+    camara.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', medir);
+  medir();
+
+  document.addEventListener('visibilitychange', function(){ animar = !document.hidden; });
+
+  var reloj = 0;
+  (function bucle(){
+    requestAnimationFrame(bucle);
+    if (!animar) return;
+    reloj += 0.016;
+    if (!quieto){
+      torno.rotation.y += velocidad;
+      camion.position.y = Math.sin(reloj * 0.9) * 0.022;
+      var fase = Math.floor(reloj * 2.4) % 2;
+      faroA.material.emissiveIntensity = fase ? 0.25 : 1.6;
+      faroB.material.emissiveIntensity = fase ? 1.6 : 0.25;
+      destello.intensity = 0.9 + Math.sin(reloj * 7.5) * 0.45;
+    }
+    render.render(escena, camara);
+  })();
+})();
+</script>
+</body>
+</html>
