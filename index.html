@@ -94,6 +94,21 @@ a{color:inherit}
 .titular{font-family:var(--display);font-weight:400;font-size:clamp(52px,7vw,96px);line-height:1.06;letter-spacing:.005em}
 .titular .l2{display:block;color:var(--ambar);margin-top:.06em}
 .bajada{margin-top:26px;max-width:46ch;font-size:17.5px;color:var(--niebla);line-height:1.8;text-shadow:0 2px 18px rgba(16,21,26,.6)}
+.disponibilidad{
+  display:inline-flex;align-items:center;gap:11px;margin-top:24px;
+  padding:11px 16px;border:1px solid rgba(76,217,100,.48);border-radius:2px;
+  background:rgba(16,38,27,.82);color:#E7F9EA;font-size:14px;font-weight:600;
+  box-shadow:0 0 0 1px rgba(76,217,100,.08),0 8px 28px rgba(0,0,0,.18);
+}
+.luz-activa{
+  width:10px;height:10px;border-radius:50%;flex-shrink:0;background:#4CD964;
+  box-shadow:0 0 0 0 rgba(76,217,100,.7);animation:senal-activa 1.7s ease-out infinite;
+}
+@keyframes senal-activa{
+  0%{box-shadow:0 0 0 0 rgba(76,217,100,.72)}
+  70%{box-shadow:0 0 0 9px rgba(76,217,100,0)}
+  100%{box-shadow:0 0 0 0 rgba(76,217,100,0)}
+}
 .acciones{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
 .btn{
   position:relative;overflow:hidden;
@@ -298,6 +313,7 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
   <div class="wrap portada-in">
     <h1 class="titular sube d1">Tu carro no se mueve.<span class="l2">Nosotros sí.</span></h1>
     <p class="bajada sube d2">Remolque y auxilio vial en Tijuana, las 24 horas. Contestamos al primer timbrazo, te decimos el precio antes de salir y llegamos en menos de 20 minutos.</p>
+    <div class="disponibilidad sube d3" role="status"><span class="luz-activa" aria-hidden="true"></span>Más de 10 grúas activas ahora mismo</div>
     <div class="acciones sube d3">
       <a href="tel:+526640000000" class="btn btn-ambar">Llamar ahora</a>
       <a href="https://wa.me/526640000000?text=Hola,%20necesito%20una%20gr%C3%BAa" class="btn btn-linea" target="_blank" rel="noopener">Pedir por WhatsApp</a>
