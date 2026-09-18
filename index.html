@@ -700,6 +700,17 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
     var r = lienzo.getBoundingClientRect();
     if (!r.width || !r.height) return;
     render.setSize(r.width, r.height, false);
+    var esMovil = r.width <= 620;
+    if (esMovil){
+      // En pantallas angostas abrimos y alejamos la cámara para encuadrar toda la grúa.
+      camara.fov = 48;
+      camara.position.set(10.5, 4.8, 16.8);
+      camara.lookAt(0.5, 0.95, 0);
+    } else {
+      camara.fov = 30;
+      camara.position.set(6.6, 3.1, 9.4);
+      camara.lookAt(1.1, 0.85, 0);
+    }
     camara.aspect = r.width / r.height;
     camara.updateProjectionMatrix();
   }
