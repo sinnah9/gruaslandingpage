@@ -60,24 +60,26 @@ a{color:inherit}
 .marca{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-size:29px;letter-spacing:.03em;text-decoration:none;white-space:nowrap}
 .marca-logo{width:38px;height:38px;display:block;flex-shrink:0}
 .marca i{font-style:normal;color:var(--ambar)}
-.nav{display:flex;gap:30px;font-size:14.5px;color:var(--humo)}
-.nav a{text-decoration:none;transition:color .2s}
-.nav a:hover{color:var(--niebla)}
+.nav{display:flex;gap:30px;font-family:var(--display);font-size:17px;letter-spacing:.035em;color:#FFFFFF}
+.nav a{text-decoration:none;transition:color .2s,text-shadow .2s}
+.nav a:hover{color:#FFFFFF;text-shadow:0 0 12px rgba(255,255,255,.72)}
 .top-tel{
   position:relative;overflow:hidden;
   display:inline-flex;align-items:center;gap:10px;
-  background:rgba(196,30,58,.55);color:#FFFFFF;
+  background:rgba(0,128,38,.78);color:#FFFFFF;
   padding:11px 22px;border-radius:999px;
   font-size:14.5px;font-weight:600;text-decoration:none;
-  border:1px solid rgba(255,255,255,.28);
+  border:1px solid rgba(0,255,65,.86);
   backdrop-filter:blur(20px) saturate(180%);
   -webkit-backdrop-filter:blur(20px) saturate(180%);
-  box-shadow:0 4px 18px rgba(196,30,58,.28), inset 0 1px 0 rgba(255,255,255,.3);
+  box-shadow:0 0 12px rgba(0,255,65,.52),0 4px 18px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.3);
   transition:transform .2s,box-shadow .2s,background .2s;
+  animation:pulso-llamada 1.8s ease-in-out infinite;
 }
-.top-tel:hover{transform:translateY(-1px);background:rgba(196,30,58,.68);box-shadow:0 10px 30px var(--ambar-sombra), inset 0 1px 0 rgba(255,255,255,.3)}
+.top-tel:hover{transform:translateY(-1px);background:rgba(0,165,49,.9);box-shadow:0 0 22px rgba(0,255,65,.86),0 10px 30px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.3)}
 .punto{width:7px;height:7px;border-radius:50%;background:#FFFFFF;animation:latir 2.4s infinite}
 @keyframes latir{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes pulso-llamada{0%,100%{box-shadow:0 0 10px rgba(0,255,65,.42),0 4px 18px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 25px rgba(0,255,65,.9),0 4px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.35)}}
 
 /* ---------- portada ---------- */
 .portada{
@@ -164,8 +166,8 @@ a{color:inherit}
 .cobertura-pista{display:flex;width:max-content;animation:desfile 28s linear infinite}
 .cobertura:hover .cobertura-pista{animation-play-state:paused}
 .cobertura-grupo{display:flex;align-items:center;flex-shrink:0}
-.cob-eti{padding:18px 26px 18px 32px;font-size:13.5px;color:var(--ambar);white-space:nowrap;flex-shrink:0}
-.cob-zona{padding:18px 26px;font-size:14.5px;color:var(--humo);border-left:1px solid var(--linea);white-space:nowrap;flex-shrink:0}
+.cob-eti{padding:18px 26px 18px 32px;font-size:13.5px;color:#00FF41;text-shadow:0 0 6px rgba(0,255,65,.92),0 0 18px rgba(0,255,65,.46);white-space:nowrap;flex-shrink:0}
+.cob-zona{padding:18px 26px;font-size:14.5px;color:#00FF41;text-shadow:0 0 6px rgba(0,255,65,.92),0 0 18px rgba(0,255,65,.46);border-left:1px solid var(--linea);white-space:nowrap;flex-shrink:0}
 @keyframes desfile{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- estructura de secciones ---------- */
@@ -190,7 +192,7 @@ section{padding:104px 0}
 .serv-fila:hover{padding-left:14px}
 .serv-fila h3{font-family:var(--display);font-weight:400;font-size:28px;line-height:1.3;letter-spacing:.015em}
 .serv-fila p{color:var(--humo);font-size:15.5px;line-height:1.75;max-width:52ch}
-.serv-precio{font-size:14px;color:var(--ambar);white-space:nowrap}
+.serv-precio{font-size:14px;color:#00FF41;text-shadow:0 0 6px rgba(0,255,65,.92),0 0 18px rgba(0,255,65,.46);white-space:nowrap}
 
 /* ---------- proceso ---------- */
 .proceso{background:var(--acero)}
@@ -212,6 +214,18 @@ section{padding:104px 0}
 .resena-google{display:flex;justify-content:center;margin-top:40px}
 .btn-google{background:rgba(255,255,255,.55);color:#1F1F1F;border-color:rgba(255,255,255,.6)}
 .btn-google:hover{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.8)}
+
+/* ---------- alianzas para talleres ---------- */
+.talleres{background:var(--acero);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.talleres-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(330px,.9fr);gap:72px;align-items:center}
+.talleres .enc{margin-bottom:0}
+.talleres-etiqueta{display:flex;align-items:center;gap:9px;margin-bottom:14px;color:#00FF41;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.talleres-etiqueta::before{content:"";width:8px;height:8px;border-radius:50%;background:#00FF41;box-shadow:0 0 12px rgba(0,255,65,.8)}
+.talleres-panel{padding:36px;border:1px solid rgba(0,255,65,.38);background:linear-gradient(135deg,rgba(0,255,65,.09),rgba(16,21,26,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.talleres-panel h3{font-family:var(--display);font-size:30px;font-weight:400;letter-spacing:.02em;line-height:1.15}
+.talleres-lista{list-style:none;margin:24px 0 30px;display:grid;gap:13px;color:var(--niebla);font-size:15px}
+.talleres-lista li{display:flex;gap:11px;align-items:flex-start}
+.talleres-lista li::before{content:"✓";color:#00FF41;font-weight:700}
 
 /* ---------- preguntas ---------- */
 .faq{max-width:840px}
@@ -264,6 +278,7 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
   .portada{min-height:78vh;padding:100px 0 70px}
   .pasos{grid-template-columns:repeat(2,1fr)}
   .serv-fila{grid-template-columns:1fr;gap:12px}
+  .talleres-in{grid-template-columns:1fr;gap:38px}
   .nav{display:none}
 }
 @media (max-width:620px){
@@ -297,9 +312,10 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
     <nav class="nav">
       <a href="#servicios">Servicios</a>
       <a href="#proceso">Cómo funciona</a>
+      <a href="#talleres">Talleres</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
-    <a href="tel:+526640000000" class="top-tel"><span class="punto"></span>664 000 0000</a>
+    <a href="tel:+526647264587" class="top-tel"><span class="punto"></span>664-726-4587</a>
   </div>
 </header>
 
@@ -315,8 +331,8 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
     <p class="bajada sube d2">Remolque y auxilio vial en Tijuana, las 24 horas. Contestamos al primer timbrazo, te decimos el precio antes de salir y llegamos en menos de 20 minutos.</p>
     <div class="disponibilidad sube d3" role="status"><span class="luz-activa" aria-hidden="true"></span>Más de 10 grúas activas ahora mismo</div>
     <div class="acciones sube d3">
-      <a href="tel:+526640000000" class="btn btn-ambar">Llamar ahora</a>
-      <a href="https://wa.me/526640000000?text=Hola,%20necesito%20una%20gr%C3%BAa" class="btn btn-linea" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+      <a href="tel:+526647264587" class="btn btn-ambar">Llamar ahora</a>
+      <a href="https://wa.me/526647264587?text=Hola,%20necesito%20una%20gr%C3%BAa" class="btn btn-linea" target="_blank" rel="noopener">Pedir por WhatsApp</a>
       <a href="https://g.page/r/REEMPLAZAR_CON_TU_ID/review" target="_blank" rel="noopener" class="btn btn-google">
         <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84c-.21 1.13-.84 2.09-1.8 2.73v2.27h2.91c1.7-1.57 2.69-3.88 2.69-6.64z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.81 5.96-2.18l-2.91-2.27c-.81.54-1.84.86-3.05.86-2.34 0-4.32-1.58-5.03-3.71H.96v2.34C2.44 15.98 5.48 18 9 18z"/><path fill="#FBBC05" d="M3.97 10.7A5.4 5.4 0 0 1 3.68 9c0-.59.1-1.17.29-1.7V4.96H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.04l3.01-2.34z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l3.01 2.34C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
         <span>Reseña en Google</span>
@@ -333,7 +349,6 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
 <div class="cobertura">
   <div class="cobertura-pista">
     <div class="cobertura-grupo">
-      <span class="cob-eti">Cobertura esta noche</span>
       <span class="cob-zona">Zona Río</span>
       <span class="cob-zona">Centro</span>
       <span class="cob-zona">Otay</span>
@@ -344,7 +359,6 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
       <span class="cob-zona">Carretera a Tecate</span>
     </div>
     <div class="cobertura-grupo" aria-hidden="true">
-      <span class="cob-eti">Cobertura esta noche</span>
       <span class="cob-zona">Zona Río</span>
       <span class="cob-zona">Centro</span>
       <span class="cob-zona">Otay</span>
@@ -384,6 +398,25 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
         <p>A veces no hace falta la grúa. Si se arregla en el lugar, te lo resolvemos ahí mismo y te cobramos menos.</p>
         <span class="serv-precio">Desde $350</span>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="talleres" id="talleres">
+  <div class="wrap talleres-in">
+    <div class="enc revela">
+      <p class="talleres-etiqueta">Alianzas para talleres</p>
+      <h2>Tu grúa de confianza cuando el cliente se queda varado</h2>
+      <p>Atención preferente para talleres aliados. Recogemos el vehículo, lo llevamos directo contigo y mantenemos informado al cliente durante el traslado.</p>
+    </div>
+    <div class="talleres-panel revela">
+      <h3>Trabajemos juntos</h3>
+      <ul class="talleres-lista">
+        <li>Prioridad de atención para tus clientes.</li>
+        <li>Traslados directos a tu taller en Tijuana y alrededores.</li>
+        <li>Servicio 24/7 y comprobante de cada traslado.</li>
+      </ul>
+      <a href="https://wa.me/526647264587?text=Hola,%20tengo%20un%20taller%20y%20me%20interesa%20una%20alianza%20de%20servicio%20de%20gr%C3%BAa" class="btn btn-ambar" target="_blank" rel="noopener">Soy taller, quiero una alianza</a>
     </div>
   </div>
 </section>
@@ -467,11 +500,11 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
 <section class="final">
   <div class="wrap revela">
     <h2>No esperes a que oscurezca más.</h2>
-    <a href="tel:+526640000000" class="tel">664 000 0000</a>
+    <a href="tel:+526647264587" class="tel">664-726-4587</a>
     <small>Disponible ahora en Tijuana y alrededores</small>
     <div class="acciones">
-      <a href="tel:+526640000000" class="btn btn-ambar">Llamar ahora</a>
-      <a href="https://wa.me/526640000000?text=Hola,%20necesito%20una%20gr%C3%BAa" class="btn btn-linea" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+      <a href="tel:+526647264587" class="btn btn-ambar">Llamar ahora</a>
+      <a href="https://wa.me/526647264587?text=Hola,%20necesito%20una%20gr%C3%BAa" class="btn btn-linea" target="_blank" rel="noopener">Pedir por WhatsApp</a>
     </div>
   </div>
 </section>
@@ -492,7 +525,7 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
   if (!window.THREE || !lienzo) { document.getElementById('sin3d').style.display='flex'; return; }
 
   var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var render, escena, camara, torno, animar = true;
+  var render, escena, camara, torno, pluma, cable, animar = true;
 
   try {
     render = new THREE.WebGLRenderer({canvas:lienzo, antialias:true, alpha:true});
@@ -620,7 +653,7 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
   // pluma y malacate
   var torre = caja(0.26, 1.15, 0.9, mAcero, -0.85, 1.72, 0);
   camion.add(torre);
-  var pluma = caja(2.5, 0.2, 0.26, mAcero, 0.2, 2.16, 0);
+  pluma = caja(2.5, 0.2, 0.26, mAcero, 0.2, 2.16, 0);
   pluma.rotation.z = -0.16;
   camion.add(pluma);
   var malacate = new THREE.Mesh(new THREE.CylinderGeometry(0.22,0.22,0.68,18), mRin);
@@ -628,7 +661,7 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
   malacate.position.set(-0.85, 2.3, 0);
   malacate.castShadow = true;
   camion.add(malacate);
-  var cable = new THREE.Mesh(new THREE.CylinderGeometry(0.022,0.022,1.9,8), mRin);
+  cable = new THREE.Mesh(new THREE.CylinderGeometry(0.022,0.022,1.9,8), mRin);
   cable.rotation.z = Math.PI/2 - 0.16;
   cable.position.set(0.3, 2.2, 0);
   camion.add(cable);
@@ -683,6 +716,9 @@ footer{border-top:1px solid var(--linea);padding:44px 0;background:var(--acero)}
     if (!quieto){
       torno.rotation.y += velocidad;
       camion.position.y = Math.sin(reloj * 0.9) * 0.022;
+      var movimientoPluma = Math.sin(reloj * 0.72) * 0.065;
+      pluma.rotation.z = -0.16 + movimientoPluma;
+      cable.rotation.z = Math.PI/2 - 0.16 + movimientoPluma;
       var fase = Math.floor(reloj * 2.4) % 2;
       faroA.material.emissiveIntensity = fase ? 0.25 : 1.6;
       faroB.material.emissiveIntensity = fase ? 1.6 : 0.25;
